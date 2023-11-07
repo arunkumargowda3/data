@@ -2,7 +2,7 @@
 resource "aws_security_group" "SG" {
   description = "Security group for ${var.env} ${var.instance_name}"
   name        = "${var.instance_name}-${var.env}-SG"
-  vpc_id      = var.vpc
+  vpc_id      = aws_vpc.demo-vpc.id
 
   ingress {
     from_port   = 22

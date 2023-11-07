@@ -33,21 +33,28 @@ variable "subnet_id" {
 variable "env" {
   description = "Name of the environment"
   type        = string
+  default     = "DEV"
 }
 
 variable "env_db" {
   description = "Name of the environment"
   type        = string
+  default     = "TEST_UAT"
 }
 
 variable "instance_count" {
   default = "1"
 }
 
-variable "vpc" {
-  description = "The name of the vpc the resources should live in"
-  type        = string
+variable "web_server" {
+  type = list(string)
+  default = ["web1","web3"]
 }
+
+#variable "vpc" {
+#description = "The name of the vpc the resources should live in"
+# type        = string
+#}
 
 variable "associate_public_ip_address" {
   description = "Associate public address for the Instance"
@@ -77,4 +84,8 @@ output "subnet_id" {
 
 output "availability_zone" {
   value = aws_instance.project.availability_zone
+}
+
+output "aws_vpc_id" {
+  value = aws_vpc.demo-vpc.id
 }
